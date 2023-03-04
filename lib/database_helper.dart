@@ -46,6 +46,10 @@ $columnDefinition TEXT NOT NULL
     final db = await database;
     return await db.insert(table, word.toMap());
   }
+Future<int> insertIntoLernkartei(Word word) async {
+  final db = await instance.database;
+  return await db.insert(table, word.toMap());
+}
 
   Future<List<Word>> getAllWords() async {
     final db = await database;
