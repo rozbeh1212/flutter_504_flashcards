@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison
+// ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -22,38 +22,41 @@ class _LernkarteiScreenState extends State<LernkarteiScreen> {
     _loadWords();
   }
 
-  Future<void> _loadWords() async {
-    final List<Word> allWords = await DatabaseHelper.instance.getAllWords();
-    final List<Word> lernkarteiWords = [];
-
-    for (final word in allWords) {
+ Future<void> _loadWords() async {
+   final List<Word> allWords = await DatabaseHelper.instance.getAllWords();
+   final List<Word> lernkarteiWords = [];
+ 
+  for (final word in allWords) {
       if (word.lastStudied == null ||
-          DateTime.now().difference(word.lastStudied!!).inDays >= word.interval) {
+          word.interval! <= DateTime.now().difference(word.lastStudied!).inDays) {
         lernkarteiWords.add(word);
       }
     }
-
-    setState(() {
-      _words = lernkarteiWords;
-    });
-  }
+ 
+   setState(() {
+     _words = lernkarteiWords;
+   });
+ }
+ 
 
   void _onWordKnown(Word word) {
     setState(() {
-      word.lastStudied = DateTime.now() as int;
-      word.interval *= 2;
+      word.lastStudied = DateTime.now();
+      word.interval = (word.interval != null ? word.interval! : 1) * 2;
     });
 
     DatabaseHelper.instance.update(word);
+    _loadWords(); // reload the list after updating the word
   }
 
   void _onWordUnknown(Word word) {
     setState(() {
-      word.lastStudied = DateTime.now() as int;
+      word.lastStudied = DateTime.now();
       word.interval = 1;
     });
 
     DatabaseHelper.instance.update(word);
+    _loadWords(); // reload the list after updating the word
   }
 
   @override

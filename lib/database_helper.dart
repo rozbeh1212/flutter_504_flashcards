@@ -62,4 +62,6 @@ $columnDefinition TEXT NOT NULL
   }
 
   void update(Word word) {}
+
+  // public void insertIntoLernkartei(String question, String answer) {}
 }

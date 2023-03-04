@@ -1,15 +1,17 @@
-import 'package:intl/intl.dart';
-
 class Word {
-  late int id;
-  late String word;
-  late String definition;
-  late int lastStudied;
-  late num interval;
+  int? id;
+  String word;
+  String definition;
+  DateTime? lastStudied;
+  int? interval;
 
-  Word({required this.word, required this.definition, required this.lastStudied, required this.interval, required this.id});
-
-  // other methods
+  Word({
+    required this.word,
+    required this.definition,
+    required this.lastStudied,
+    required this.interval,
+    required this.id,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -17,14 +19,12 @@ class Word {
       'word': word,
       'definition': definition,
       'interval': interval,
-      'lastStudied': lastStudied != null
-          ? DateTime.fromMillisecondsSinceEpoch(lastStudied)
-          : null,
+      'lastStudied': lastStudied != null ? lastStudied!.millisecondsSinceEpoch : null,
     };
   }
+
   set intervalValue(num value) {
-    interval = value;
-    lastStudied = DateTime.now().millisecondsSinceEpoch;
+    interval = value.toInt();
+    lastStudied = DateTime.now();
   }
 }
-
