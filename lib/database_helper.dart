@@ -23,6 +23,8 @@ class DatabaseHelper {
   static const columnPartOfSpeech = 'part_of_speech';
   static const columnKnown = 'known';
 
+
+
   // Make this a singleton class.
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -123,4 +125,5 @@ Future close() async {
 var db = await database;
 db.close();
 }
+
 }

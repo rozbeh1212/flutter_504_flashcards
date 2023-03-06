@@ -1,29 +1,32 @@
+import 'package:path/path.dart' as p;
+import 'package:sqflite/sqflite.dart';
+import '/database_helper.dart';
+
 class Word {
   final int id;
   final String word;
   final String meaning;
-  final String phonetic;
-  final String description;
-  final String examples;
-  final String pronunciationUK;
-  final String pronunciationUS;
-  final String partOfSpeech;
+  final String? phonetic;
+  final String? description;
+  final String? examples;
+  final String? pronunciationUK;
+  final String? pronunciationUS;
+  final String? partOfSpeech;
   final int known;
 
   Word({
     required this.id,
     required this.word,
     required this.meaning,
-    required this.phonetic,
-    required this.description,
-    required this.examples,
-    required this.pronunciationUK,
-    required this.pronunciationUS,
-    required this.partOfSpeech,
+    this.phonetic,
+    this.description,
+    this.examples,
+    this.pronunciationUK,
+    this.pronunciationUS,
+    this.partOfSpeech,
     required this.known,
   });
 
-  // Define the copyWith method here
   Word copyWith({
     int? id,
     String? word,
@@ -50,35 +53,33 @@ class Word {
     );
   }
 
-  // Define the fromMap method here
   factory Word.fromMap(Map<String, dynamic> map) {
     return Word(
-      id: map[columnId],
-      word: map[columnWord],
-      meaning: map[columnMeaning],
-      phonetic: map[columnPhonetic],
-      description: map[columnDescription],
-      examples: map[columnExamples],
-      pronunciationUK: map[columnPronunciationUK],
-      pronunciationUS: map[columnPronunciationUS],
-      partOfSpeech: map[columnPartOfSpeech],
-      known: map[columnKnown],
+      id: map[DatabaseHelper.columnId],
+      word: map[DatabaseHelper.columnWord],
+      meaning: map[DatabaseHelper.columnMeaning],
+      phonetic: map[DatabaseHelper.columnPhonetic],
+      description: map[DatabaseHelper.columnDescription],
+      examples: map[DatabaseHelper.columnExamples],
+      pronunciationUK: map[DatabaseHelper.columnPronunciationUK],
+      pronunciationUS: map[DatabaseHelper.columnPronunciationUS],
+      partOfSpeech: map[DatabaseHelper.columnPartOfSpeech],
+      known: map[DatabaseHelper.columnKnown],
     );
   }
 
-  // Define the toMap method here
   Map<String, dynamic> toMap() {
     return {
-      columnId: id,
-      columnWord: word,
-      columnMeaning: meaning,
-      columnPhonetic: phonetic,
-      columnDescription: description,
-      columnExamples: examples,
-      columnPronunciationUK: pronunciationUK,
-      columnPronunciationUS: pronunciationUS,
-      columnPartOfSpeech: partOfSpeech,
-      columnKnown: known,
+      DatabaseHelper.columnId: id,
+      DatabaseHelper.columnWord: word,
+      DatabaseHelper.columnMeaning: meaning,
+      DatabaseHelper.columnPhonetic: phonetic,
+      DatabaseHelper.columnDescription: description,
+      DatabaseHelper.columnExamples: examples,
+      DatabaseHelper.columnPronunciationUK: pronunciationUK,
+      DatabaseHelper.columnPronunciationUS: pronunciationUS,
+      DatabaseHelper.columnPartOfSpeech: partOfSpeech,
+      DatabaseHelper.columnKnown: known,
     };
   }
 }
