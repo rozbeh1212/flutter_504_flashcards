@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'WordDetailScreen.dart';
 import 'word.dart';
 import 'database_helper.dart';
 
