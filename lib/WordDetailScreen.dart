@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'word.dart';
 
+
 class WordDetailScreen extends StatelessWidget {
   final Word word;
 
@@ -42,7 +43,7 @@ class WordDetailScreen extends StatelessWidget {
             ),
             SizedBox(height: 8.0),
             Text(
-              word.examples,
+              word.examples?? "Not found",
               style: TextStyle(
                 fontSize: 16.0,
               ),

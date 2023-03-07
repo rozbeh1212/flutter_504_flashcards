@@ -1,6 +1,8 @@
-import 'dart:async';
-import 'dart:io';
+// ignore_for_file: import_of_legacy_library_into_null_safe
 
+import 'dart:async';
+
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
