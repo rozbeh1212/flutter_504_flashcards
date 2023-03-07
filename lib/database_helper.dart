@@ -1,11 +1,12 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 
 import 'dart:async';
+import 'dart:convert';
 
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
+import 'package:http/http.dart' as http;
 import 'word.dart';
 
 class DatabaseHelper {
@@ -120,7 +121,17 @@ var db = await database;
 return Sqflite.firstIntValue(
 await db.rawQuery('SELECT COUNT(*) FROM $table'));
 }
-
+  Future<void> updatePhonetics(int id, String word) async {
+    final response = await http.get(Uri.parse(
+        'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=$word&tl=en'));
+    if (response.statusCode == 200) {
+      final bytes = response.bodyBytes;
+      final phonetics = base64Encode(bytes);
+      final db = await database;
+      await db.update(table, {columnPhonetic: phonetics},
+          where: '$columnId = ?', whereArgs: [id]);
+    }
+  }
 
 // Close the database connection.
 Future close() async {

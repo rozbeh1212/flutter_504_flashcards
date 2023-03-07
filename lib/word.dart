@@ -10,8 +10,8 @@ class Word {
   final String? examples;
   final String? pronunciationUK;
   final String? pronunciationUS;
-  final String? partOfSpeech;
-  final int known;
+  late final String? partOfSpeech;
+  final bool known;
 
   Word({
     required this.id,
@@ -36,9 +36,8 @@ class Word {
     String? pronunciationUK,
     String? pronunciationUS,
     String? partOfSpeech,
-    int? known,
-  }) {
-    return Word(
+    bool? known,
+  }) => Word(
       id: id ?? this.id,
       word: word ?? this.word,
       meaning: meaning ?? this.meaning,
@@ -50,7 +49,7 @@ class Word {
       partOfSpeech: partOfSpeech ?? this.partOfSpeech,
       known: known ?? this.known,
     );
-  }
+  
 
   factory Word.fromMap(Map<String, dynamic> map) {
     return Word(

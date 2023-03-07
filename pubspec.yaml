@@ -30,14 +30,14 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  sqflite: ^1.1.7
+  sqflite: ^2.0.3+1
   intl: ^0.18.0
   yaml: ^3.1.1
   audioplayers: ^3.0.1
   http: ^0.13.5
   path_provider: ^2.0.13
-  cached_network_image: ^2.5.1
-  flutter_sound: ^2.0.3
+  cached_network_image: ^3.2.1
+  flutter_sound: ^9.2.13
   flutter_tts: ^3.6.3
 
   # The following adds the Cupertino Icons font to your application.
