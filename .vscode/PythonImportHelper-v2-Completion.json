@@ -1,0 +1,44 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "Translator",
+        "importPath": "googletrans",
+        "description": "googletrans",
+        "isExtraImport": true,
+        "detail": "googletrans",
+        "documentation": {}
+    },
+    {
+        "label": "Translator",
+        "importPath": "googletrans",
+        "description": "googletrans",
+        "isExtraImport": true,
+        "detail": "googletrans",
+        "documentation": {}
+    },
+    {
+        "label": "wordnet",
+        "importPath": "nltk.corpus",
+        "description": "nltk.corpus",
+        "isExtraImport": true,
+        "detail": "nltk.corpus",
+        "documentation": {}
+    },
+    {
+        "label": "translator",
+        "kind": 5,
+        "importPath": "scap",
+        "description": "scap",
+        "peekOfCode": "translator = Translator(service_urls=['translate.google.com'])\n# read the existing data from the JSON file\nwith open('vocabulary.json', 'r') as infile:\n    data = json.load(infile)\n# iterate through each item in the data and add Persian translations, phonetics, examples and part of speech in English for the definitions\nfor item in data:\n    # retrieve the word\n    word = item['word']\n    # retrieve the definitions for the word\n    definitions = item['definition'].split(';')",
+        "detail": "scap",
+        "documentation": {}
+    }
+]
