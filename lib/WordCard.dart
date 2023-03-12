@@ -23,7 +23,8 @@ class _WordCardState extends State<WordCard> {
 
   Future<File> _downloadFile(String url, String filename) async {
     final response = await HttpClient().getUrl(Uri.parse(url));
-    final bytes = await consolidateHttpClientResponseBytes(response as HttpClientResponse);
+    final bytes = await consolidateHttpClientResponseBytes(
+        response as HttpClientResponse);
     final path =
         '${(await getApplicationDocumentsDirectory()).path}/audio/$filename';
     final file = File(path);
@@ -32,7 +33,7 @@ class _WordCardState extends State<WordCard> {
     return file;
   }
 
-Future<void> _playDownloadedFile(String filepath) async {
+  Future<void> _playDownloadedFile(String filepath) async {
     final player = AssetsAudioPlayer();
     await player.open(Audio.file(filepath));
     await player.play();
@@ -44,7 +45,7 @@ Future<void> _playDownloadedFile(String filepath) async {
     });
     await showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (context) => const AlertDialog(
         title: Text('Downloading audio file...'),
         content: CircularProgressIndicator(),
       ),
@@ -77,7 +78,7 @@ Future<void> _playDownloadedFile(String filepath) async {
     } catch (e) {
       print('Error playing audio: $e');
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error playing audio')));
+          .showSnackBar(const SnackBar(content: Text('Error playing audio')));
     }
   }
 
@@ -85,23 +86,23 @@ Future<void> _playDownloadedFile(String filepath) async {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(9.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.word, style: Theme.of(context).textTheme.headline6),
-            SizedBox(height: 8.0),
+            Text(widget.word, style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 8.0),
             Text(widget.definition),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 if (_isDownloading)
-                  CircularProgressIndicator()
+                  const CircularProgressIndicator()
                 else
                   ElevatedButton.icon(
-                    icon: Icon(Icons.volume_up),
-                    label: Text('Play audio'),
+                    icon: const Icon(Icons.volume_up),
+                    label: const Text('Play audio'),
                     onPressed: _handleAudioButtonPressed,
                   ),
               ],
