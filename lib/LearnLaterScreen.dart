@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'user.dart';
+import 'User.dart';
 import 'LeitnerSystem.dart';
 import 'Word.dart';
 
@@ -7,13 +7,14 @@ class LearnLaterScreen extends StatefulWidget {
   final List<Word> words;
 
   var user;
-  LearnLaterScreen({required this.words, required User user});
+  LearnLaterScreen({required this.words, required  this.user});
 
   @override
   _LearnLaterScreenState createState() => _LearnLaterScreenState();
 }
 
 class _LearnLaterScreenState extends State<LearnLaterScreen> {
+  
   LeitnerSystem _leitnerSystem = LeitnerSystem();
   Word? _currentWord;
 

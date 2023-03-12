@@ -1,4 +1,4 @@
-import 'user.dart';
+import 'User.dart';
 
 class Badges {
   String name;

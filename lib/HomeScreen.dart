@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'user.dart';
+import 'package:flutter_application_2/User.dart';
 import 'FlashcardScreen.dart';
 import 'LearnLaterScreen.dart';
 import 'Word.dart';
@@ -18,7 +18,7 @@ void main() {
 class HomeScreen extends StatefulWidget {
   final User user;
 
-  HomeScreen({required this.user});
+  const HomeScreen({required this.user});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Vocabulary Builder')),
+      appBar: AppBar(title: const Text('Vocabulary Builder')),
       body: FutureBuilder<List<Word>>(
         future: _wordsFuture,
         builder: (BuildContext context, AsyncSnapshot<List<Word>> snapshot) {
@@ -78,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Points: ${widget.user.points}'),
-                        SizedBox(height: 16),
-                        Text('Badges:'),
+                        const SizedBox(height: 16),
+                        const Text('Badges:'),
                         Column(
                           children: _badges.map((badge) {
                             return Row(
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ? Icons.check
                                       : Icons.clear,
                                 ),
-                                SizedBox(width: 8),
+                                const SizedBox(width: 8),
                                 Text('${badge.name}: ${badge.description}'),
                               ],
                             );
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => FlashcardScreen(word: word)),
+                            builder: (context) => FlashcardScreen( word:word, user: widget.user,)),
                       );
                     },
                   );
@@ -114,14 +114,14 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             );
           } else if (snapshot.hasError) {
-            return Center(child: Text('Failed to load words'));
+            return const Center(child: Text('Failed to load words'));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.play_arrow),
+        child: const Icon(Icons.play_arrow),
         onPressed: () {
         Navigator.push(
             context,
