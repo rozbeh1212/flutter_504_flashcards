@@ -11,8 +11,9 @@ class WordCard extends StatefulWidget {
   final String word;
   final String definition;
 
-  const WordCard({required this.word, required this.definition, Key? key})
-      : super(key: key);
+  const WordCard({super.key, required this.word, required this.definition});
+
+  
 
   @override
   _WordCardState createState() => _WordCardState();
